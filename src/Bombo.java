@@ -1,3 +1,5 @@
+import jdk.swing.interop.SwingInterOpUtils;
+
 import java.util.ArrayList;
 
 /*
@@ -6,11 +8,12 @@ import java.util.ArrayList;
     Description:
 */
 public class Bombo {
+    int bola;
     boolean victoria = false;
     ArrayList<Integer> numeros = new ArrayList<>(100);
 
     public int generar() {
-        int bola = ((int) (Math.random() * 100));
+        bola = ((int) (Math.random() * 100));
         System.out.println("\n");
         if (numeros.contains(bola)) bola = ((int) (Math.random() * 100));
         else numeros.add(bola);
@@ -18,30 +21,28 @@ public class Bombo {
         return bola;
     }
 
-    public void game(Jugador jugador1, Jugador jugador2)throws Exception {
+    public void game(Jugador jugador1, Jugador jugador2) {
         while (!victoria) {
-            if (jugador1.cartulina1.size() != 0 && jugador1.cartulina2.size() != 0) {
-                generar();
-            } else if (jugador1.cartulina1.size() == 0 && jugador1.cartulina2.size() == 0){
-                System.out.println("Gana el jugador " + jugador1);
+            generar();
+            if (jugador1.cartulina1.size() == 0){
+                System.out.println("\nGana el jugador 1");
                 victoria = true;
-            } else if (jugador2.cartulina1.size() != 0 && jugador2.cartulina2.size() != 0) {
-                generar();
-            } else if (jugador2.cartulina1.size() == 0 && jugador2.cartulina2.size() == 0){
-                System.out.println("Gana el jugador " + jugador1);
+            } else if (jugador2.cartulina1.size() == 0){
+                System.out.println("\nGana el jugador 2");
                 victoria = true;
-            } else throw new Exception("Ha ocurrido algo inesperado.");
+            } else System.out.println("Y seguimos para bingo");
 
-            if (jugador1.cartulina1.contains(generar())) {
-                jugador1.cartulina1.remove(generar());
-            } else if (jugador1.cartulina2.contains(generar())) {
-                jugador1.cartulina2.remove(generar());
+            if (jugador1.cartulina1.contains(bola)) {
+               jugador1.cartulina1.remove(jugador1.cartulina1.indexOf(bola));
+                System.out.println("El jugador 1 tiene este número y le quedan "+jugador1.cartulina1.size()+" números para ganar");
+            } else if (jugador2.cartulina1.contains(bola)) {
+                jugador2.cartulina1.remove(jugador2.cartulina1.indexOf(bola));
+                System.out.println("El jugador 2 tiene este número y le quedan "+jugador2.cartulina1.size()+" números para ganar");
+
+            } else if (jugador1.cartulina1.size() != 0 && jugador2.cartulina1.size() != 0){
+                System.out.println("Ninguno tiene el número");
             }
-            if (jugador2.cartulina1.contains(generar())) {
-                jugador2.cartulina1.remove(generar());
-            } else if (jugador2.cartulina2.contains(generar())) {
-                jugador2.cartulina2.remove(generar());
-            }
+            else System.out.println("\nFin de la partida");
         }
 
     }

@@ -7,15 +7,12 @@ import java.util.ArrayList;
 */
 public class Bingo {
     public static void main(String[] args) {
-        Jugador Jugador1=new Jugador();
-        Jugador Jugador2=new Jugador();
+        Jugador Jugador1 = new Jugador();
+        Jugador Jugador2 = new Jugador();
         Jugador1.rellenar();
         Jugador2.rellenar();
-        Bombo Bombo1=new Bombo();
-        try {
-            Bombo1.game(Jugador1,Jugador2);
-        }
-        catch (Exception e){}
+        Bombo Bombo1 = new Bombo();
+        Bombo1.game(Jugador1, Jugador2);
     }
 }
 
