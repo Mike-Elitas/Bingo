@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /*
-    Created by Ivan
+    Created by Mike Etchup
     in 03/02/2021
     Description: Bingo funcional versión solo 2 jugadores
 */

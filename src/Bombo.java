@@ -10,7 +10,7 @@ public class Bombo {
     ArrayList<Integer> numeros = new ArrayList<>(100);
     int bola;
     public void generar() {
-        boolean repetido=false;
+        boolean repetido;
         do{
             bola = ((int) (Math.random() * 100));
             if (numeros.contains(bola)) repetido=true;
@@ -27,14 +27,9 @@ public class Bombo {
             if (jugador1.cartulina1.size() != 0 && jugador2.cartulina1.size() != 0) {
                 generar();
             } else System.out.println("Ha sucedido algo inesperado");
-            if (jugador1.cartulina1.contains(bola)) {
-                jugador1.cartulina1.remove(jugador1.cartulina1.indexOf(bola));
-                System.out.println("El jugador 1 tiene este numero");
-            } else System.out.println("El jugador 1 no tiene este numero");
-            if (jugador2.cartulina1.contains(bola)) {
-                jugador2.cartulina1.remove(jugador2.cartulina1.indexOf(bola));
-                System.out.println("El jugador 2 tiene este numero");
-            } else System.out.println("El jugador 2 no tiene este numero");
+            comprobarNumero(jugador1);
+            comprobarNumero(jugador2);
+
 
             if (jugador1.cartulina1.size()==0 && jugador2.cartulina1.size()==0){
                 System.out.println("\nGanan ambos");
@@ -47,6 +42,14 @@ public class Bombo {
                 victoria = true;
             }else System.out.println("\n\nContinuamos la partida");
         }
+
+    }
+
+    private void comprobarNumero(Jugador j) {
+        if (j.cartulina1.contains(bola)) {
+            j.cartulina1.remove(j.cartulina1.indexOf(bola));
+            System.out.println("Este jugador tiene el número");
+        } else System.out.println("Este jugador no tiene el número");
 
     }
 }

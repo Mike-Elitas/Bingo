@@ -10,7 +10,7 @@ public class Jugador {
 
     public void rellenar() {
         boolean repetido=false;
-        System.out.println("\n\nCartulina 1\n");
+        System.out.println("\n\nCartulina\n");
         for (int i = 0; i < 10; i++) {
             int numero = (int) (Math.random() * 100);
             if (cartulina1.contains(numero)){
